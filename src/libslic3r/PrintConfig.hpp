@@ -79,6 +79,7 @@ enum PrintHostType {
     htAstroBox,
     htRepetier,
     htKlipper,
+    htMPMDv2,
 };
 
 enum AuthorizationType {
@@ -237,6 +238,7 @@ template<> inline const t_config_enum_values& ConfigOptionEnum<PrintHostType>::g
         {"astrobox", htAstroBox},
         {"repetier", htRepetier},
         {"klipper", htKlipper},
+        {"mpmdv2", htMPMDv2},
     };
     return keys_map;
 }
@@ -782,6 +784,7 @@ public:
     ConfigOptionPercent             bridge_flow_ratio;
     ConfigOptionPercent             over_bridge_flow_ratio;
     ConfigOptionPercent             bridge_overlap;
+    ConfigOptionPercent             bridge_overlap_min;
     ConfigOptionEnum<InfillPattern> bottom_fill_pattern;
     ConfigOptionFloatOrPercent      bridged_infill_margin;
     ConfigOptionFloat               bridge_speed;
@@ -900,6 +903,7 @@ protected:
         OPT_PTR(bridge_flow_ratio);
         OPT_PTR(over_bridge_flow_ratio);
         OPT_PTR(bridge_overlap);
+        OPT_PTR(bridge_overlap_min);
         OPT_PTR(bottom_fill_pattern);
         OPT_PTR(bridged_infill_margin);
         OPT_PTR(bridge_speed);
