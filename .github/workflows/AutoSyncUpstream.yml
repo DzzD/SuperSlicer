@@ -1,0 +1,29 @@
+name: Auto Sync from Upstream
+
+env:
+  UPSTREAM_URL: "https://github.com/supermerill/SuperSlicer.git"
+  UPSTREAM_BRANCH: "master"
+
+on:
+  workflow_dispatch:
+  schedule: 
+  - cron: "0 0 * * *"
+  
+jobs:
+  Check-For-Changes:
+    name: Check for changes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Synchronize from Upstream
+        uses: dabreadman/sync-upstream-repo@v1.0.0.b
+        with:
+          upstream_repo: ${{ env.UPSTREAM_URL }}
+          upstream_branch: ${{ env.UPSTREAM_BRANCH }}
+          downstream_branch: ""
+          # GitHub Bot token
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch_args: ""
+          merge_args: ""
+          push_args: ""
+          spawn_logs: ""
